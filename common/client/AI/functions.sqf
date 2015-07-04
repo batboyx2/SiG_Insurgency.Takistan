@@ -158,18 +158,6 @@ fillHouseEast = {
 				true
 			] call BIS_fnc_MP;*/
 			
-			[_ai, "doStop", true, true] call BIS_fnc_MP;
-			_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
-			_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
-			[[_ai, _skill], "setSkill", true, true] call BIS_fnc_MP;
-			_ai addMPEventHandler  ["killed", {
-				missionNamespace setVariable ["%1var", time];
-				if (random 100 > 90) then {
-					_case = createVehicle ["Suitcase", [0,0,0], [], 0, "None"];	
-					_case setPosATL getPosATL (_this select 0);
-				};
-			}];
-			
 			/*
 			call compile format['
 				%1 = _ai;
@@ -200,7 +188,21 @@ fillHouseEast = {
 		sleep 0.1;
 	};
 	// spawns the AI prepared with 'setVehicleInit'
-	// if _process then { processInitCommands; };
+	if _process then {
+	
+		[_ai, "doStop", true, true] call BIS_fnc_MP;
+		//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
+		//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
+		[[_ai, _skill], "setSkill", true, true] call BIS_fnc_MP;
+		_ai addMPEventHandler  ["killed", {
+			missionNamespace setVariable ["%1var", time];
+			if (random 100 > 90) then {
+				_case = createVehicle ["Suitcase", [0,0,0], [], 0, "None"];	
+				_case setPosATL getPosATL (_this select 0);
+			};
+		}];
+		
+	};
 }; 
 
 aiSpawn = {   	
@@ -219,7 +221,7 @@ aiSpawn = {
 		if (markerColor _gMkr == "ColorRed" && isNil "_clear") then {  // make sure it's a red square
 			_hPos   = getPosATL _house;	
 			_eCount = count nearestObjects[_hPos, ["Man"], 15];									
-			_wUnits = nearestPlayers(_hPos,SPAWNRANGE-200,true,"array"); 
+			_wUnits = nearestPlayers(_hPos,(SPAWNRANGE - 200),true,"array"); 
 			_wCount = count _wUnits;
 			// players need not to be within SPAWNRANGE-200 from a house or they need not to see the spawn position for its AI to spawn
 			if (_eCount == 0 && (_wCount == 0 || !arrCanSee(_wUnits,_hPos,30,50))) then { [_house, _wCount, _inc] call fillHouseEast; };					
