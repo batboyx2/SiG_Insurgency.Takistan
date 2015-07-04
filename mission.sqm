@@ -13178,7 +13178,7 @@ class Mission
 		};
 		class Item950
 		{
-			position[]={6133.8496,76.89727,11414.709};
+			position[]={6136.4053,77.12146,11418.322};
 			azimut=-147.25693;
 			special="NONE";
 			id=1068;
