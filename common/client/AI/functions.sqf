@@ -8,6 +8,14 @@ aiMonitor = {
 	if (count _ais > 0) then { if (vehicle (_ais select 0) == (_ais select 0)) then { _ai = _ais select 0; }; };
 	if (count _guns > 0) then { _gun = gunner (_guns select 0); };
 	if (isNull _gun && isNull _ai) exitWith {};
+	[
+		[_ai, player, _gun],
+		"fnc_Function1",
+		server,
+		false,
+		true
+	] call BIS_fnc_MP;
+	/*
 	[nil,server,"loc",rSPAWN,[_ai,player,_gun],{
 		_ai  = _this select 0;
 		_plr = _this select 1;
@@ -31,6 +39,7 @@ aiMonitor = {
 			};			
 		};
 	}] call RE;
+	*/
 };
 
 // findHousesFront; find enterable houses close to the player
@@ -191,7 +200,7 @@ fillHouseEast = {
 		sleep 0.1;
 	};
 	// spawns the AI prepared with 'setVehicleInit'
-	if _process then { processInitCommands; };
+	// if _process then { processInitCommands; };
 }; 
 
 aiSpawn = {   	
