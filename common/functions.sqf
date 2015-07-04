@@ -156,11 +156,11 @@ nearestEastMen = {
 	_type  = _this select 3;
     
 	if (_type == "count") then { _result = 0; } else { _result = []; }; 
-	{
-		if (typeOf _x in eastInfClasses && ( (alive _x && primaryWeapon _x != "") || !_alive ) ) then {
-			if (_type == "count") then { _result = _result + 1; } else { _result set [count _result, _x]; };
-		};
-	} forEach _arr2;
+	if (_type == "array") then {
+		{
+			if (side _x == east) then {_result = _result + [_x];};
+		} forEach _arr2;
+	};
 	for "_i" from 0 to (count _arr1 - 1) do { 
 		{ 
 			if (typeOf _x in eastInfClasses && (alive _x || !_alive) ) then { 

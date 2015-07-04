@@ -75,8 +75,9 @@ findSquadAIName = {
     _squad = _this select 0;
     _i     = _this select 1;
     
-	if (_i > maxAIPerPlayer) exitWith { "" }; 
+	if (_i > maxAIPerPlayer) exitWith { "" };
     _str = format["%1ai%2", _squad, _i];
+	
 	if isNil _str exitWith { _str };
     _unit = call compile _str;
 	if isNull _unit exitWith { _str };
@@ -134,13 +135,17 @@ fillHouseEast = {
 			// "look-alive" by issuing a move command
 			if _bool exitWith {
 				_unit = call compile _name;
-				_unit setPosATL _pos; 
+				//_unit setPosATL _pos; 
 				_unit setDamage 0;
+				[-1, {_this doMove (getPosATL _this); sleep 1; doStop _this;}, _unit] call CBA_fnc_globalExecute;
+				
+				/*
 				[server,server,"loc",rSPAWN,_unit,{
 					_this doMove getPosATL _this;
 					sleep 1;
 					doStop _this;
 				}] call RE;
+				*/
 				if DEBUG then { server globalChat format["moving %1", _name]; };
 			};
 			// if there are no appropriate AI units around,  prepare for spawning them
@@ -150,14 +155,21 @@ fillHouseEast = {
 			_ai    = _group createUnit [_class, spawnPos, [], 0, "NONE"];
 			_ai setPosATL _pos;
 			_skill = aiSkill / 10;
-			/*_params = [_ai, IEDList, _skill, spawnPos];
-			[
-				_params,
-				fnc_Func1,
-				true,
-				true
-			] call BIS_fnc_MP;*/
+			missionNamespace setVariable [_name,_ai];
+			//_ai setVehicleVarName _name;
+			//_name = _ai;
 			
+			[_ai, "doStop", true, true] call BIS_fnc_MP;
+			//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
+			//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
+			[[_ai, _skill], "setSkill", true, true] call BIS_fnc_MP;
+			_ai addMPEventHandler  ["killed", {
+				missionNamespace setVariable ["%1var", time];
+				if (random 100 > 90) then {
+					_case = createVehicle ["Suitcase", [0,0,0], [], 0, "None"];	
+					_case setPosATL getPosATL (_this select 0);
+				};
+			}];
 			/*
 			call compile format['
 				%1 = _ai;
@@ -188,21 +200,7 @@ fillHouseEast = {
 		sleep 0.1;
 	};
 	// spawns the AI prepared with 'setVehicleInit'
-	if _process then {
-	
-		[_ai, "doStop", true, true] call BIS_fnc_MP;
-		//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
-		//_ai addMagazineGlobal (IEDList select (random (count IEDList - 1)));
-		[[_ai, _skill], "setSkill", true, true] call BIS_fnc_MP;
-		_ai addMPEventHandler  ["killed", {
-			missionNamespace setVariable ["%1var", time];
-			if (random 100 > 90) then {
-				_case = createVehicle ["Suitcase", [0,0,0], [], 0, "None"];	
-				_case setPosATL getPosATL (_this select 0);
-			};
-		}];
-		
-	};
+	if _process then {};
 }; 
 
 aiSpawn = {   	
@@ -223,11 +221,12 @@ aiSpawn = {
 			_eCount = count nearestObjects[_hPos, ["Man"], 15];
 			_wUnits = nearestPlayers(_hPos,(SPAWNRANGE - 200),true,"array"); 
 			_wCount = count _wUnits;
-			diag_log format["diagnose_%1_%2_%3",_eCount,_wUnits,_wCount];
+			
 			// players need not to be within SPAWNRANGE-200 from a house or they need not to see the spawn position for its AI to spawn
 			if (_eCount == 0 && (_wCount == 0 || !arrCanSee(_wUnits,_hPos,30,50))) then {
+				
 				[_house, _wCount, _inc] call fillHouseEast;
-				diag_log format["diagnose_filledHouse_%1_%2_%3_%4_%5_%6",_house,_wCount,_inc,_eCount,_wUnits,_wCount];
+			
 			};					
 		};
 		if exitCondition exitWith {};
