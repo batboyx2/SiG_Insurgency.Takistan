@@ -41,26 +41,26 @@ Sleep (floor (random _MRT)); //+++++++++++++++++++++++++++++++---Generate Randon
 private ["_IED"];
 Switch ( _IEDType ) do {
 	Case "GrndS": {
-		_IED = "BAF_IED_v3";
+		_IED = "IEDUrbanBig_F";
 	};
 	Case "GrndL": {
 		_IED = "BAF_IED_v4";
 	};
 	Case "GarbS": {
-		_IED = "BAF_IED_v1";
+		_IED = "IEDUrbanSmall_F";
 	};
 	Case "GarbL": {
-		_IED = "BAF_IED_v2";
+		_IED = "IEDLandSmall_F";
 	};
 	Case "Rnd": {
 		If ( _RandomIED == 0) then {
-				_IED = "BAF_IED_v1";
+				_IED = "IEDUrbanSmall_F";
 		};
 		If ( _RandomIED == 1) then {
-				_IED = "BAF_IED_v2";
+				_IED = "IEDLandSmall_F";
 		};
 		If ( _RandomIED == 2) then {
-				_IED = "BAF_IED_v3";
+				_IED = "IEDUrbanBig_F";
 		};
 		If ( _RandomIED == 3) then {
 				_IED = "BAF_IED_v4";
@@ -1398,7 +1398,7 @@ Waituntil {triggeractivated _IEDtriggerOuter};
           publicVariable "reezo_IEDdetect_canFear";
           _rnd = random 1;
           if (_rnd < 0.4) then { "B_30mm_HE" createVehicle (getPos _IED) };
-          if (_rnd > 0.6) then { "Sh_125_HE" createVehicle (getPos _IED) }
+          if (_rnd > 0.6) then { "Bo_Mk82" createVehicle (getPos _IED) }
           else { "Bo_GBU12_LGB" createVehicle (getPos _IED)};
           deleteVehicle _IED;
         };

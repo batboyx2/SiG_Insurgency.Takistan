@@ -52,7 +52,7 @@ if(typeOf X == HELITYPE)then{"Heli"}else{\
 if(typeOf X == MHQTYPE)then{"MHQ"}else{\
 "Victor-1-" + str unitNumber(X)}}})
 
-#define IEDList             ["BAF_ied_v1","BAF_ied_v2","BAF_ied_v3","BAF_ied_v4"]
+#define IEDList             ["IEDUrbanSmall_F","IEDLandSmall_F","IEDUrbanBig_F","IEDLandBig_F"]
 #define cacheType 			"HLC_FAL_ammobox"
 #define ammoBoxType			"HLC_AK_ammobox"
 // define westVehicles 		[humv11,humv12,humv13,humv14,humv15,humv16,atv11,atv12,atv13,atv14,atv15,heli,MHQ]

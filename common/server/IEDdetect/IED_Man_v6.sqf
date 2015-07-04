@@ -41,29 +41,29 @@ Sleep (floor (random _MRT)); //+++++++++++++++++++++++++++++++---Generate Randon
 private ["_IED"];
 Switch ( _IEDType ) do {
 	Case "GrndS": {
-		_IED = "BAF_IED_v3";
+		_IED = "IEDUrbanBig_F";
 	};
 	Case "GrndL": {
-		_IED = "BAF_IED_v4";
+		_IED = "IEDLandBig_F";
 	};
 	Case "GarbS": {
-		_IED = "BAF_IED_v1";
+		_IED = "IEDUrbanSmall_F";
 	};
 	Case "GarbL": {
-		_IED = "BAF_IED_v2";
+		_IED = "IEDLandSmall_F";
 	};
 	Case "Rnd": {
 		If ( _RandomIED == 0) then {
-				_IED = "BAF_IED_v1";
+				_IED = "IEDUrbanSmall_F";
 		};
 		If ( _RandomIED == 1) then {
-				_IED = "BAF_IED_v2";
+				_IED = "IEDLandSmall_F";
 		};
 		If ( _RandomIED == 2) then {
-				_IED = "BAF_IED_v3";
+				_IED = "IEDUrbanBig_F";
 		};
 		If ( _RandomIED == 3) then {
-				_IED = "BAF_IED_v4";
+				_IED = "IEDLandBig_F";
 		};
 	};
 };
