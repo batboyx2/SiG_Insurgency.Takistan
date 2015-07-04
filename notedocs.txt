@@ -1,0 +1,77 @@
+//tk units
+TK_INS_Soldier_TL_EP1 >> LOP_ISTS_Infantry_TL
+TK_INS_Soldier_EP1 >> LOP_ISTS_Soldier
+TK_CIV_Takistani01_EP1 >> LOP_Tak_Civ_Man_01
+
+
+//us units
+ACE_USMC_Soldier_LAT_D >> rhsusf_usmc_marpat_wd_riflemanat
+ACE_USMC_Soldier_GL_D >> rhsusf_usmc_marpat_wd_grenadier
+ACE_USMC_Soldier_D >> rhsusf_usmc_marpat_wd_rifleman
+ACE_USMC_SoldierS_Engineer_D >> rhsusf_usmc_marpat_wd_engineer
+ACE_USMC_Soldier_MG_D >> rhsusf_usmc_marpat_wd_machinegunner
+ACE_USMC_Soldier_Crew_D >> rhsusf_usmc_marpat_wd_crewman
+ACE_USMC_Soldier_AA_D >> rhsusf_usmc_marpat_wd_stinger
+
+
+//boxes
+BAF_VehicleBox >> Box_NATO_AmmoVeh_F
+USVehicleBox_EP1 >> Box_NATO_AmmoVeh_F
+ACE_WeaponBox_BIS_US >> Box_NATO_AmmoVeh_F
+ACE_BandageBoxWest >> ACE_medicalSupplyCrate
+ace_sys_weapons_magicbox >> Box_NATO_AmmoVeh_F
+ACE_ItemsBox >> ACE_Box_Misc
+ACRE_RadioBox >> Box_NATO_AmmoVeh_F
+GuerillaCacheBox_EP1 >> HLC_AK_ammobox
+
+
+
+//statics
+M2StaticMG_US_EP1 >> RHS_M2StaticMG_WD
+MK19_TriPod_US_EP1 >> RHS_MK19_TriPod_WD
+ACE_120Tampella >> B_Mortar_01_F
+M252_US_EP1 >> B_Mortar_01_F
+M119_US_EP1 >> rhsusf_m109d_usarmy
+M2HD_mini_TriPod_US_EP1 >> RHS_M2StaticMG_MiniTripod_D
+TOW_TriPod_US_EP1 >> B_static_AT_F
+Stinger_Pod_US_EP1 >> B_static_AA_F
+
+
+//vics
+HMMWV_M998_crows_MK19_DES_EP1 >> rhsusf_m1025_d_mk19
+BAF_Offroad_D >> rhsusf_m998_d_4dr_fulltop
+LandRover_Special_CZ_EP1 >> rhsusf_m998_d_4dr_fulltop
+HMMWV_DES_EP1 >> rhsusf_m1025_d
+HMMWV_M998A2_SOV_DES_EP1 >> rhsusf_m1025_d
+HMMWV_Ambulance_DES_EP1 >> rhsusf_m998_d_4dr_halftop
+HMMWV_M1151_M2_DES_EP1 >> rhsusf_m1025_d_m2
+ArmoredSUV_PMC >> rhsusf_m1025_d_m2
+BAF_Jackal2_GMG_D >> rhsusf_m1025_d_mk19
+HMMWV_Avenger_DES_EP1 >> rhsusf_m1025_d_m2
+MTVR_DES_EP1 >> B_Truck_01_covered_F
+ACE_MTVRReammo_DES_EP1 >> B_Truck_01_box_F
+ACE_MTVRRepair_DES_EP1 >> B_Truck_01_box_F
+ACE_MTVRRefuel_DES_EP1 >> B_Truck_01_box_F
+BAF_FV510_D >> RHS_M2A3
+M2A3_EP1 >> RHS_M2A3
+M1A2_US_TUSK_MG_EP1 >> rhsusf_m1a2sep1tuskiid_usarmy
+TowingTractor >> rhsusf_m1025_d
+ATV_US_EP1 >> B_Quadbike_01_F
+M1129_MC_EP1 >> RHS_M6_wd
+ACE_Stryker_RV_SLAT_D >> RHS_M6_wd
+ACE_Stryker_ICV_MK19_SLAT_D >> RHS_M6_wd
+M1130_CV_EP1 >> RHS_M6_wd
+
+
+
+//air vics
+UH60M_EP1 >> RHS_UH60M
+UH1Y >> RHS_UH1Y
+ACE_A10_Mk82 >> RHS_A10
+UH60M_MEV_EP1 >> RHS_UH60M_MEV2_d
+CH_47F_EP1 >> RHS_CH_47F_light
+MH6J_EP1 >> B_Heli_Light_01_F
+AH6J_EP1 >> B_Heli_Light_01_armed_F
+ACE_AH6J_DAGR_FLIR >> B_Heli_Light_01_armed_F
+MV22 >> B_Heli_Transport_01_F
+AH64D_EP1 >> RHS_AH64D_CS
