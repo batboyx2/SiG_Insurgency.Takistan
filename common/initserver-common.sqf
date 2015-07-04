@@ -8,16 +8,16 @@
 #include "server\caches\functions.sqf"
 #include "server\vehicles\functions.sqf"
 
-onPlayerConnected '
+onPlayerConnected "
 	_caches = cacheList; 
-	for "_i" from 0 to (count _caches - 1) do { 
+	for ""_i"" from 0 to (count _caches - 1) do { 
 		_cache = _caches select _i; 
 		{ 
 			_x setMarkerPos (getMarkerPos _x); 
 			_x setMarkerText (markerText _x); 
 		} forEach cacheMarkers(_cache); 
 	}; 
-'; 
+"; 
 
 //if (isClass(configFile>>"CfgPatches">>"acre_main")) then {
 	_box = createVehicle ["Box_NATO_AmmoVeh_F", getMarkerPos "acreradio", [], 0, "NONE"];
