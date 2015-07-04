@@ -94,7 +94,7 @@ groupMembers = {
 				};
 			};
 		};
-	} forEach (squadUnitStrings(squadString(player))-[player]);
+	} forEach ((units group player)-[player]);
 	_result
 };
 
