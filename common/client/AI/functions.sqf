@@ -220,11 +220,15 @@ aiSpawn = {
 		_gMkr   = str(_house call getGridPos);
 		if (markerColor _gMkr == "ColorRed" && isNil "_clear") then {  // make sure it's a red square
 			_hPos   = getPosATL _house;	
-			_eCount = count nearestObjects[_hPos, ["Man"], 15];									
+			_eCount = count nearestObjects[_hPos, ["Man"], 15];
 			_wUnits = nearestPlayers(_hPos,(SPAWNRANGE - 200),true,"array"); 
 			_wCount = count _wUnits;
+			diag_log format["diagnose_%1_%2_%3",_eCount,_wUnits,_wCount];
 			// players need not to be within SPAWNRANGE-200 from a house or they need not to see the spawn position for its AI to spawn
-			if (_eCount == 0 && (_wCount == 0 || !arrCanSee(_wUnits,_hPos,30,50))) then { [_house, _wCount, _inc] call fillHouseEast; };					
+			if (_eCount == 0 && (_wCount == 0 || !arrCanSee(_wUnits,_hPos,30,50))) then {
+				[_house, _wCount, _inc] call fillHouseEast;
+				diag_log format["diagnose_filledHouse_%1_%2_%3_%4_%5_%6",_house,_wCount,_inc,_eCount,_wUnits,_wCount];
+			};					
 		};
 		if exitCondition exitWith {};
 	};
