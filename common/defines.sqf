@@ -1,4 +1,4 @@
-#define DEBUG		false
+#define DEBUG		true
 
 //Constants
 #define VIEWDISTANCE		2000
