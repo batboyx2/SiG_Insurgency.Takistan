@@ -1,3 +1,28 @@
+//no better place than any to put retarded shit, TEEHEE
+fnc_Function1 = {
+	_ai  = _this select 0;
+	_plr = _this select 1;
+	_gun = _this select 2;
+	if !isNull _ai then {
+		_ai reveal _plr;
+		_ai setUnitPos "UP";
+		_ai doWatch _plr;
+		_ai doMove getPosATL _plr;
+	};
+	if !isNull _gun then {
+		_gun reveal _plr;
+		_dir = ((getPosATL _plr select 0) - (getPosATL _gun select 0)) atan2 ((getPosATL _plr select 1) - (getPosATL _gun select 1)); 
+		group _gun setFormDir _dir;
+		_gun doTarget _plr;
+		sleep 1;
+		curTime = time;
+		while { time - curTime < 5 } do {
+			vehicle _gun fireAtTarget [_plr,currentWeapon vehicle _gun];
+			sleep (0.1 + random 0.2);
+		};			
+	};
+};
+
 //if !isDedicated then { startLoadingScreen ["Loading...","RscLoadScreenCustom"]; };
 enableSaving [false, false]; 
 waitUntil { isServer || !isNull player }; 
