@@ -47,7 +47,7 @@ if isEast then {
 	player setVariable ["INS_playerString",str player, true];
 	player addEventHandler ["respawn",{removeAllWeapons player;}]; 
 	};
-if (isServer) then { [] spawn { call compile preprocessFileLineNumbers "initserver.sqf"; }; }; 
+//if (isServer) then { [] spawn { call compile preprocessFileLineNumbers "initserver.sqf"; }; }; 
 endLoadingScreen;
 
 waitUntil { !(isNull (findDisplay 46)) }; 
